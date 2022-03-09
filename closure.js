@@ -1,5 +1,5 @@
 function range(start, end) {
-  return function publicApi (end) {
+  function publicApi (start, end) {
     var array = []
 
     for (let i = start; i <= end; i++) {
@@ -9,6 +9,11 @@ function range(start, end) {
     console.log(array)
     return array
   }
+  return (end !== undefined) 
+    ? publicApi(start, end)
+    : function (end) {
+      return publicApi(start, end)
+    }
 }
 
 range(3, 3)
